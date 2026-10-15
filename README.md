@@ -19,7 +19,7 @@ Do not double-click the HTML files to open a `file://` address. ES modules need 
 | Authentication          | Separate sign-in, sign-up, forgot-password and reset pages; route guard and logout; ready to connect to Supabase                                             |
 | Workspaces              | Personal workspace on sign-up, family/company workspace creation, validated switcher and per-user remembered selection                                       |
 | Transactions            | Today-only income/expenses, locked past financial fields, revision-checked delete, 20-row pagination, note search, account/category/type/status/date filters |
-| Money                   | Currency precision validation, exact decimal-string totals, stored conversion rates and manual cross-currency rates                                          |
+| Money                   | Currency precision validation, exact decimal-string totals, stored conversion rates and automatically fetched online cross-currency rates                  |
 | Dashboard               | Full-calendar-year approved income, monthly expenses/net change, month navigation, category doughnut, six-month bars and exact accessible figures            |
 | Accounts and categories | Create accounts with fixed currencies, original-currency balances; create, rename and recolour categories                                                    |
 | Company review          | Owner/admin approval queue, rejection reasons and separate resubmission; financial edits return approved expenses to review                                  |
@@ -35,7 +35,7 @@ This is the starting implementation, not the entire eleven-week v1 release descr
 
 Settings now includes shared workspace profiles, member visibility, invitation codes, joining with a verified email, role changes, removal/leave, and ownership transfer. Invitations are copied manually; the app does not send email.
 
-Automatic foreign-currency quotes work only when the date has a complete matching pair in `exchange_rates`. This milestone does not schedule or fetch provider rates. If no quote exists, the form requests a manual rate. No conversion rewrites older transaction values.
+Foreign-currency quotes are fetched online from Frankfurter and cached in `exchange_rates` before the app requests a quote. Rates are daily reference rates, not live trading prices; on weekends and holidays the provider may return the latest available business-day rate. No conversion rewrites older transaction values.
 
 ## Project layout
 
@@ -65,7 +65,7 @@ The downloadable ZIP places the HTML, CSS, JS and assets at the project root, ma
 
 - New income and expenses must use **today in the workspace time zone**. The form and database enforce the rule. Old entries remain visible; notes and approvals still work, but past financial details cannot be rewritten.
 - **Yearly total income** covers 1 January–31 December of the selected dashboard year. Expenses and net change are explicitly monthly. Opening balances are not income.
-- Choose a currency directly in the entry form; managers can create an account in that currency without leaving it. Choose a report currency on Overview or Transactions and apply a cached or manual rate. Stored amounts and rates remain unchanged. Set a preferred report currency in Settings.
+- Choose a currency directly in the entry form; managers can create an account in that currency without leaving it. Foreign-currency transaction and report rates are fetched online automatically; users do not need to type exchange rates. Stored transaction amounts and saved rates remain unchanged. Set a preferred report currency in Settings.
 - Download the complete selected year from Overview, or all matching rows from Transactions, as PDF, Word or PowerPoint. Original amounts and report amounts are included; totals count approved records only. Conversion rounds each exported row before summing, so the converted report total can differ by a few minor units from the dashboard's converted aggregate.
 - Apply migrations **003–005** in order to enable the latest changes in an existing Supabase installation. See [UPGRADE.md](UPGRADE.md).
 

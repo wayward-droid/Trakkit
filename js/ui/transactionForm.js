@@ -164,28 +164,16 @@ export function transactionForm({
     "Not specified",
   );
   method.value = existing?.payment_method || "";
-  const rateMode = el("select", { name: "rate_mode" }),
-    rate = el("input", {
-      name: "manual_rate",
-      type: "text",
-      inputmode: "decimal",
-      placeholder: "Base currency per 1 account currency",
-      value: existing?.rate_source === "manual" ? existing.exchange_rate : "",
-    });
+  const rateMode = el("select", { name: "rate_mode" });
   fillSelect(rateMode, [
-    ...(existing
-      ? [{ value: "keep", label: "Keep the saved exchange rate" }]
-      : []),
-    { value: "auto", label: "Use a dated cached rate" },
-    { value: "manual", label: "Enter a manual rate" },
+    ...(existing ? [{ value: "keep", label: "Keep the saved exchange rate" }] : []),
+    { value: "auto", label: "Fetch current online rate automatically" },
   ]);
   rateMode.value = existing ? "keep" : "auto";
-  const manualField = el("label", {}, "Manual exchange rate", rate),
-    fx = el(
+  const fx = el(
       "div",
       { class: "form-stack" },
       el("label", {}, "Exchange rate", rateMode),
-      manualField,
     ),
     preview = el(
       "div",
@@ -196,11 +184,11 @@ export function transactionForm({
       "a",
       {
         class: "rate-attribution",
-        href: "https://www.exchangerate-api.com",
+        href: "https://frankfurter.dev/",
         target: "_blank",
         rel: "noopener",
       },
-      "Rates by ExchangeRate-API",
+      "Online rates by Frankfurter",
     );
   const error = el("p", { class: "form-error", role: "alert", hidden: true }),
     submit = el(
@@ -303,16 +291,6 @@ export function transactionForm({
     if (keepRate()) {
       row.rate_source = existing.rate_source;
       row.exchange_rate = existing.exchange_rate;
-    } else if (
-      rateMode.value === "manual" &&
-      a.currency_code !== workspace.base_currency
-    ) {
-      if (!/^\d+(\.\d{1,8})?$/.test(rate.value) || scaled(rate.value, 8) <= 0n)
-        throw new Error(
-          "Enter a positive manual rate, with at most 8 decimal places.",
-        );
-      row.rate_source = "manual";
-      row.exchange_rate = rate.value;
     } else {
       row.rate_source = "auto";
       if (existing) row.exchange_rate = null;
@@ -325,8 +303,7 @@ export function transactionForm({
     const a = selectedAccount(),
       foreign = a && a.currency_code !== workspace.base_currency;
     fx.hidden = !foreign;
-    manualField.hidden = rateMode.value !== "manual";
-    attribution.hidden = !foreign || rateMode.value === "manual";
+    attribution.hidden = !foreign;
     const keepOption = [...rateMode.options].find((o) => o.value === "keep");
     if (keepOption) {
       keepOption.disabled =
@@ -360,7 +337,9 @@ export function transactionForm({
           accountId: a.id,
           amount: row.amount,
           date: row.transaction_date,
-          manualRate: row.rate_source === "manual" ? row.exchange_rate : null,
+          currencyCode: a.currency_code,
+          baseCurrency: workspace.base_currency,
+          manualRate: null,
         });
       if (version !== quoteVersion || !m.dialog.open) return;
       preview.classList.toggle("warning", Boolean(q.stale));
@@ -376,7 +355,7 @@ export function transactionForm({
           "small",
           {},
           foreign
-            ? `1 ${a.currency_code} = ${q.exchange_rate} ${workspace.base_currency} · ${q.rate_source === "manual" ? "manual rate" : q.rate_date}${keepRate() ? " · saved rate preserved" : ""}${q.stale ? " · this rate is more than 3 days older than the transaction" : ""}`
+            ? `1 ${a.currency_code} = ${q.exchange_rate} ${workspace.base_currency} · ${q.rate_source === "manual" ? "saved manual rate" : "online rate · " + q.rate_date}${keepRate() ? " · saved rate preserved" : ""}${q.stale ? " · this rate is more than 3 days older than the transaction" : ""}`
             : "Same currency. No conversion needed.",
         ),
       );

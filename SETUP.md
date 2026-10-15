@@ -85,12 +85,11 @@ Use a second test account in a separate browser profile. It should receive its o
 
 - An account's currency is fixed at creation.
 - The workspace base currency locks permanently once a transaction, budget or nonzero opening balance is saved.
-- For a foreign-currency account, choose **Enter a manual rate** if no cached dated quote exists. A rate means base-currency units per one account-currency unit.
-- Example only: for USD 10 in an NGN workspace, a manual rate of 1,500 saves NGN 15,000. This is a synthetic test value, not a current rate.
+- For a foreign-currency account, Trakkit fetches a dated online quote automatically. A rate means base-currency units per one account-currency unit.
+- Foreign-currency rates are fetched automatically from the online provider; do not type a rate manually.
 - Today’s edits preserve the saved rate by default. Past entries allow notes and reviews only; financial details stay locked.
 - Choose **Currency** when adding an entry. If there is no account in that currency, managers can create one from the form.
-- For reports, select **Report currency** and apply a cached or manual rate. This rate means report-currency units per one base-currency unit. The rate is shown on the page and in downloads. Choose a preferred report currency in Settings.
-- Daily provider refresh and scheduling are the next currency milestone; no live rate job is enabled in this package.
+- For reports, select **Report currency** and apply it. Trakkit fetches the latest available online rate automatically. This rate means report-currency units per one base-currency unit. The rate is shown on the page and in downloads. Choose a preferred report currency in Settings.
 
 ## 8 Company expenses
 
@@ -112,6 +111,19 @@ Use **Download yearly report** on Overview for January–December of the selecte
 | Blank page on double-clicking HTML                  | Serve through Live Server or Apache using HTTP                  |
 | `account_details` or `update_transaction` not found | Apply the second migration                                      |
 | Reset/confirmation link goes to the wrong place     | Check the exact redirect host, port, path and Site URL          |
-| “No usable rate for this date”                      | Enter a manual rate; cached automatic history is not set up yet |
+| “No usable rate for this date”                      | Confirm the online-rate Edge Function is deployed and the `007_online_exchange_rates.sql` migration has been applied; the provider may not publish rates for every date. |
 | Company totals exclude an expense                   | Check its status and review submitted expenses in Approvals     |
 | “This transaction changed”                          | Reload it before editing or reviewing again                     |
+
+## Online exchange-rate setup
+
+Trakkit now fetches daily reference rates from [Frankfurter](https://frankfurter.dev/) automatically. Users do not enter rates when creating foreign-currency transactions or converting report views. These are reference rates that update on business days, not live trading or guaranteed bank/card settlement rates.
+
+For an existing Supabase project:
+
+1. Run `supabase/migrations/007_online_exchange_rates.sql` in the Supabase SQL Editor.
+2. From the project root, make sure the Supabase CLI is linked to your project, then deploy the function: `supabase functions deploy refresh-exchange-rates`.
+3. Confirm the Edge Function has the standard `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` secrets configured. Supabase normally supplies these automatically; never put the service-role key in frontend files.
+4. Test by opening Add Transaction, choosing a different account currency, and checking that the preview shows an online rate and date. Then apply a different Report currency.
+
+The rate provider may return the most recent available business-day rate for weekends, holidays, or dates with no publication. If the provider is unreachable or does not offer a requested quote, Trakkit displays an error instead of asking the user to guess an exchange rate.

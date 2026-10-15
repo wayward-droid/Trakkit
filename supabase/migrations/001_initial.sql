@@ -409,6 +409,21 @@ begin
     (p_ws, 'Entertainment', 'expense', '#eab308'),
     (p_ws, 'Other', 'expense', '#6b7280'),
     (p_ws, 'Salary', 'income', '#22c55e'),
+    (p_ws, 'Freelance', 'income', '#10b981'),
+    (p_ws, 'Business income', 'income', '#14b8a6'),
+    (p_ws, 'Sales', 'income', '#06b6d4'),
+    (p_ws, 'Commission', 'income', '#0d9488'),
+    (p_ws, 'Bonus', 'income', '#84cc16'),
+    (p_ws, 'Investment returns', 'income', '#6366f1'),
+    (p_ws, 'Interest', 'income', '#8b5cf6'),
+    (p_ws, 'Rental income', 'income', '#a855f7'),
+    (p_ws, 'Gifts', 'income', '#ec4899'),
+    (p_ws, 'Refunds', 'income', '#f97316'),
+    (p_ws, 'Pension', 'income', '#64748b'),
+    (p_ws, 'Benefits', 'income', '#eab308'),
+    (p_ws, 'Royalties', 'income', '#d946ef'),
+    (p_ws, 'Grants', 'income', '#3b82f6'),
+    (p_ws, 'Cashback', 'income', '#f59e0b'),
     (p_ws, 'Other income', 'income', '#14b8a6');
   insert into public.accounts (workspace_id, name, type, currency_code)
   values (p_ws, 'Cash', 'cash', v_base);

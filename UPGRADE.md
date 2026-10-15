@@ -16,3 +16,8 @@ The latest visual refinement updates the existing pages and adds `js/ui/auth-amb
 ## Planning pages (migration 005)
 
 The Budgets, Savings goals, and Recurring bills pages use three workspace-scoped Supabase tables. For an existing Supabase project, run `supabase/migrations/005_planning_features.sql` after migrations 001–004 in the Supabase SQL Editor. The migration creates row-level security policies for workspace members. Then refresh the site and use the new pages from the sidebar.
+
+
+### More income categories (v7)
+
+Run `supabase/migrations/006_more_income_categories.sql` in the Supabase SQL Editor to add the new income categories to existing workspaces. Fresh installs also receive them from the updated `001_initial.sql` seed list. The migration is safe to rerun.

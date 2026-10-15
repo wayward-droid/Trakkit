@@ -7,3 +7,14 @@
 .report-year-grid strong { font-size:clamp(18px,2.8vw,25px); overflow-wrap:anywhere; }
 .insight-list { color:var(--muted); padding-left:22px; display:grid; gap:10px; }
 @media(max-width:600px){.report-period{align-items:stretch; flex-direction:column}.report-year-grid{grid-template-columns:1fr}.report-period input{width:100%}}
+
+/* Refined report export panel */
+.report-download-card { display:flex; align-items:center; justify-content:space-between; gap:22px; width:100%; padding:20px 22px; margin:16px 0 22px; border:1px solid var(--border); border-radius:20px; background:linear-gradient(135deg, var(--surface) 0%, var(--surface-alt) 100%); box-shadow:var(--card-shadow); }
+.report-download-copy { display:grid; gap:5px; min-width:0; }
+.report-download-eyebrow { color:var(--muted); font-size:10px; font-weight:700; letter-spacing:.15em; }
+.report-download-copy strong { color:var(--text); font-size:16px; letter-spacing:-.02em; }
+.report-download-copy small { color:var(--muted); font-size:12px; line-height:1.5; }
+.report-download-controls { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.report-download-controls select { min-width:150px; max-width:100%; margin:0; min-height:44px; border:1px solid var(--border); border-radius:12px; padding:10px 13px; background:var(--surface); color:var(--text); }
+.report-download-controls button { min-height:44px; border-radius:12px; white-space:nowrap; }
+@media(max-width:650px) { .report-download-card { align-items:stretch; flex-direction:column; padding:17px; gap:15px; } .report-download-controls { display:grid; grid-template-columns:minmax(0,1fr); } .report-download-controls select, .report-download-controls button { width:100%; } }

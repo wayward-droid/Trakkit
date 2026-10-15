@@ -1,3 +1,4 @@
+import { refreshExchangeRates } from "./rates.js";
 import { getClient } from "../supabaseClient.js";
 
 export async function monthlySummary(workspaceId, month) {
@@ -24,6 +25,7 @@ export async function yearlySummary(workspaceId, year) {
   return data;
 }
 export async function reportExchangeRate(workspaceId, currency) {
+  await refreshExchangeRates();
   const db = await getClient();
   const { data, error } = await db.rpc("report_exchange_rate", {
     p_workspace: workspaceId,

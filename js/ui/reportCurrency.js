@@ -43,12 +43,6 @@ export function reportCurrency(container, onChange) {
     version = 0;
   const form = el("form", { class: "report-controls" }),
     select = el("select", { name: "report_currency" }),
-    rate = el("input", {
-      name: "report_rate",
-      inputmode: "decimal",
-      placeholder: "Cached rate, or enter your own",
-    }),
-    rateLabel = el("label", {}, "Exchange rate", rate),
     apply = el(
       "button",
       { type: "submit", class: "button secondary" },
@@ -65,28 +59,18 @@ export function reportCurrency(container, onChange) {
   );
   form.append(
     el("label", {}, "Report currency", select),
-    rateLabel,
     apply,
     status,
     error,
   );
   container.replaceChildren(form);
   function showRate() {
-    rateLabel.hidden = select.value === workspace?.base_currency;
-    rateLabel.firstChild.textContent = `1 ${workspace?.base_currency || "base currency"} equals`;
-    rate.setAttribute(
-      "aria-label",
-      `Units of ${select.value} per 1 ${workspace?.base_currency}`,
-    );
+    // Currency selection only changes the target; the rate is fetched on Apply.
   }
   select.onchange = () => {
     version++;
-    rate.value = "";
     message(form, "");
     showRate();
-  };
-  rate.oninput = () => {
-    version++;
   };
   form.onsubmit = async (event) => {
     event.preventDefault();
@@ -98,22 +82,7 @@ export function reportCurrency(container, onChange) {
     try {
       let result = { rate: "1", source: "base", date: null, stale: false };
       if (currency !== ws.base_currency) {
-        if (rate.value.trim()) {
-          if (
-            !/^\d+(\.\d{1,8})?$/.test(rate.value.trim()) ||
-            scaled(rate.value.trim(), 8) <= 0n ||
-            scaled(rate.value.trim(), 8) >= 100000000000000000000n
-          )
-            throw new Error(
-              "Enter a positive exchange rate below 1 trillion, with up to 8 decimal places.",
-            );
-          result = {
-            rate: rate.value.trim(),
-            source: "manual",
-            date: null,
-            stale: false,
-          };
-        } else result = await reportExchangeRate(ws.id, currency);
+        result = await reportExchangeRate(ws.id, currency);
       }
       if (ticket !== version || workspace.id !== ws.id) return;
       current = { ...result, currency, base: ws.base_currency };
@@ -129,7 +98,7 @@ export function reportCurrency(container, onChange) {
     status.textContent =
       current.currency === current.base
         ? `Showing ${current.base}, the workspace currency.`
-        : `Showing ${current.currency}: 1 ${current.base} = ${current.rate} ${current.currency} · ${current.source === "manual" ? "manual rate" : "cached " + current.date}${current.stale ? " · rate is over 3 days old" : ""}. Converted reports use this single rate; account balances keep their original currency.`;
+        : `Showing ${current.currency}: 1 ${current.base} = ${current.rate} ${current.currency} · ${current.source === "manual" ? "saved manual rate" : "online rate · " + current.date}${current.stale ? " · rate is over 3 days old" : ""}. Converted reports use this single rate; account balances keep their original currency.`;
   }
   return {
     setWorkspace(ws, preferred) {
@@ -147,13 +116,12 @@ export function reportCurrency(container, onChange) {
         source: "base",
       };
       select.value = preferred || ws.base_currency;
-      rate.value = "";
       message(form, "");
       showRate();
       describe();
       if (select.value !== current.currency)
         status.textContent +=
-          " Apply your preferred currency using a cached or manual rate.";
+          " Choose a report currency and apply it to fetch the latest available online rate.";
     },
     quote: () => ({ ...current }),
   };

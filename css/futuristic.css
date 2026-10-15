@@ -374,3 +374,9 @@ input:focus, select:focus, textarea:focus { border-color:var(--accent) !importan
 @media (max-width:390px) { .mobile-logout { padding:0 9px; font-size:12px; } .mobile-logout .icon { width:16px; } .topbar-right .theme-control select { max-width:68px; } }
 
 .sidebar-scrim[hidden] { display:none !important; }
+
+/* Persistent quick-add action in the workspace sidebar */
+.sidebar-quick-add { padding:12px 12px 16px; }
+.sidebar-add-transaction { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:46px; border-radius:13px; font-weight:700; }
+.sidebar-add-transaction .icon { flex-shrink:0; }
+@media(max-width:767px) { .sidebar-quick-add { padding:10px 12px 14px; } .sidebar-add-transaction { min-height:48px; } }

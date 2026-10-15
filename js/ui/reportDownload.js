@@ -12,10 +12,10 @@ export function reportDownload(container, getData, label = "Download report") {
   const button = el(
     "button",
     { class: "button secondary", type: "button" },
-    label,
+    label === "Download report" ? "Download report" : label,
   );
   container.replaceChildren(
-    el("div", { class: "report-download" }, format, button),
+    el("div", { class: "report-download report-download-card", "aria-label": "Export your financial report" }, el("div", { class: "report-download-copy" }, el("span", { class: "report-download-eyebrow" }, "EXPORT REPORT"), el("strong", {}, "Take your finances with you"), el("small", {}, "Choose a format to download a clean, shareable report.")), el("div", { class: "report-download-controls" }, format, button)),
   );
   button.onclick = async () => {
     const selected = format.value;
