@@ -53,7 +53,11 @@ export function launchPlanningPage(config) {
       toast(config.savedMessage || "Saved successfully.");
       await app.refresh();
     } catch (error) {
-      toast(error.message || "Could not save this item.", true);
+      const missingPlanningTable = ["PGRST205", "42P01"].includes(error?.code) ||
+        /could not find the table .*budgets|could not find the table .*savings_goals|could not find the table .*recurring_bills|relation .* does not exist/i.test(error?.message || "");
+      toast(missingPlanningTable
+        ? "Planning tables missing. Run supabase/migrations/005_planning_features.sql in Supabase SQL Editor, then reload."
+        : error.message || "Could not save this item.", true);
     } finally {
       busy(submit, false);
     }

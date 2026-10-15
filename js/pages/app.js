@@ -41,8 +41,11 @@ export async function startPage({ load, init }) {
         errorText = document.createElement("p");
         errorPanel.prepend(errorText);
       }
-      errorText.textContent = e?.message ||
-        "Unable to load your workspace. Check your connection and try again.";
+      const missingPlanningTable = ["PGRST205", "42P01"].includes(e?.code) ||
+        /could not find the table .*budgets|could not find the table .*savings_goals|could not find the table .*recurring_bills|relation .* does not exist/i.test(e?.message || "");
+      errorText.textContent = missingPlanningTable
+        ? "The planning tables are not installed yet. In your Supabase SQL Editor, run supabase/migrations/005_planning_features.sql, wait for it to succeed, then reload this page."
+        : e?.message || "Unable to load your workspace. Check your connection and try again.";
       errorPanel.hidden = false;
     } else {
       console.error("Trakkit page failed to load:", e);

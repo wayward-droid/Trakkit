@@ -31,6 +31,8 @@ Wait for success before running the next file. Do not execute only a selected fr
 
 The first migration creates the eleven application tables and the sign-up trigger. The second adds revision-checked transaction RPCs and exact account balances. The third enforces today-only entry dates and adds yearly reporting, report conversion and member-management functions. **All three are required by the current frontend.** If you already ran 001 and 002, follow `UPGRADE.md` and run only 003.
 
+After migrations 001–004, also run `supabase/migrations/005_planning_features.sql` to enable **Budgets, Savings Goals, and Recurring Bills**. If the rest of Trakkit works but these planning pages show a missing-table error, migration 005 is the likely missing step. For an existing project that already has 001–004 applied, run only migration 005 for these three pages.
+
 Sign up through the app after these migrations have run. Users created before the migration will not automatically get the profile/workspace records from the new-user trigger. Use a fresh test user for the first check.
 
 ## 3 Add your public connection settings
