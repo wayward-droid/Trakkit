@@ -12,3 +12,7 @@ Sign-in, invitations and shared data require your configured Supabase project. A
 Remove the obsolete `js/services/demo.js` file from older local copies. Replace the whole `tests` folder if you keep developer checks. The demo-code cleanup itself needs no migration; migration 004 is required for database-level overdraft protection. Migrations 001–004 are required for the complete current version.
 
 The latest visual refinement updates the existing pages and adds `js/ui/auth-ambient.js` and `js/ui/ambient-renderer.js`. Include both files when replacing the frontend. All business rules and public connection settings are unchanged. The background animation is optional and includes its own static fallback and pause control.
+
+## Planning pages (migration 005)
+
+The Budgets, Savings goals, and Recurring bills pages use three workspace-scoped Supabase tables. For an existing Supabase project, run `supabase/migrations/005_planning_features.sql` after migrations 001–004 in the Supabase SQL Editor. The migration creates row-level security policies for workspace members. Then refresh the site and use the new pages from the sidebar.

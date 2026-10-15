@@ -31,15 +31,29 @@ export async function startPage({ load, init }) {
   let ticket = 0,
     ready = false;
   function fail(e) {
-    $("#page-error p").textContent =
-      e.message ||
-      "Unable to load your workspace. Check your connection and try again.";
-    $("#page-error").hidden = false;
-    $("#page-loading").hidden = true;
-    $("#page-content").hidden = true;
-    document
-      .querySelectorAll("[data-add-transaction]")
-      .forEach((b) => (b.disabled = true));
+    // Keep error handling resilient across pages whose markup may differ slightly.
+    // Previously, a missing <p> inside #page-error caused this handler to throw
+    // and hide the real error behind "Cannot set properties of null (textContent)".
+    const errorPanel = $("#page-error");
+    if (errorPanel) {
+      let errorText = errorPanel.querySelector("p, [data-error-message]");
+      if (!errorText) {
+        errorText = document.createElement("p");
+        errorPanel.prepend(errorText);
+      }
+      errorText.textContent = e?.message ||
+        "Unable to load your workspace. Check your connection and try again.";
+      errorPanel.hidden = false;
+    } else {
+      console.error("Trakkit page failed to load:", e);
+    }
+    const loading = $("#page-loading");
+    if (loading) loading.hidden = true;
+    const content = $("#page-content");
+    if (content) content.hidden = true;
+    document.querySelectorAll("[data-add-transaction]").forEach((b) => {
+      b.disabled = true;
+    });
   }
 
   ctx.refresh = async () => {
@@ -69,9 +83,14 @@ export async function startPage({ load, init }) {
       $("#workspace-switcher").disabled = false;
       $("#workspace-meta").textContent =
         titleCase(ctx.workspace.type) + " · " + ctx.workspace.base_currency;
-      $("#scope-note").textContent = ownOnly(ctx.workspace)
-        ? "Your approved transactions only"
-        : "Approved transactions in your workspace";
+      const scopeNote = $("#scope-note");
+      // Scope guidance is only present on pages where it is relevant.
+      // Do not let its absence break unrelated pages such as Categories, Reports, or Team.
+      if (scopeNote) {
+        scopeNote.textContent = ownOnly(ctx.workspace)
+          ? "Your approved transactions only"
+          : "Approved transactions in your workspace";
+      }
       const reviewable =
         ctx.workspace.type === "company" &&
         ["owner", "admin"].includes(ctx.workspace.role);
