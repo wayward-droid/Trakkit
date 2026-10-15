@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Trakkit keeps your income, spending, accounts, and shared finances in clear view."
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>A space that feels like you. | Trakkit</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <script src="js/ui/theme-init.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/trakkit.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages/settings.css" />
+    <script src="assets/vendor/supabase.js" defer=""></script>
+    <script type="module" src="js/pages/settings.js"></script>
+      <link rel="stylesheet" href="css/futuristic.css" />
+</head>
+  <body data-page="settings">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html"
+        ><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span
+        ><span class="brand-word">Trakkit</span></a
+      >
+      <div class="nav-label">YOUR WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main">
+        <a href="dashboard.html" title="Overview" data-nav="dashboard"
+          ><svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg
+          ><span>Overview</span></a
+        ><a href="transactions.html" title="Transactions" data-nav="transactions"
+          ><svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 7h16m-4-4 4 4-4 4M20 17H4m4-4-4 4 4 4"></path></svg
+          ><span>Transactions</span></a
+        ><a href="accounts.html" title="Accounts" data-nav="accounts"
+          ><svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="15" rx="3"></rect>
+            <path d="M3 9h18m-6 5h6"></path>
+            <circle cx="16" cy="14" r=".5"></circle></svg
+          ><span>Accounts</span></a
+        >
+        <a href="dashboard.html#reports" title="Reports" data-nav-extra="reports">
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-5 5"></path></svg><span>Reports</span>
+        </a>
+        <a href="accounts.html#categories" title="Categories" data-nav-extra="categories">
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 11 3.8A2 2 0 0 0 9.6 3H4a1 1 0 0 0-1 1v5.6a2 2 0 0 0 .6 1.4l9.6 9.6a2 2 0 0 0 2.8 0l4.6-4.4a2 2 0 0 0 0-2.8Z"></path><circle cx="7.5" cy="7.5" r=".8"></circle></svg><span>Categories</span>
+        </a>
+        <a href="settings.html#sharing-panel" title="Company &amp; team" data-nav-extra="team">
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span>Company &amp; team</span>
+        </a>
+<a
+          href="approvals.html"
+          title="Approvals" data-nav="approvals"
+          data-review-link=""
+          hidden=""
+          ><span aria-hidden="true">✓</span><span>Approvals</span
+          ><span class="count-badge" data-approval-badge=""></span
+        ></a>
+      </nav>
+      <div class="sidebar-note">
+        <span class="note-spark">✳</span
+        ><strong>Small habits.<br />Clearer finances.</strong>
+        <p>A little clarity, every day.</p>
+      </div>
+      <nav class="side-nav side-bottom" aria-label="Account">
+        <a href="settings.html" title="Settings" data-nav="settings"
+          ><svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"
+            ></path>
+            <circle cx="12" cy="12" r="5"></circle></svg
+          ><span>Settings</span></a
+        ><button type="button" title="Log out" data-logout="">
+          <svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M10 4H5v16h5m4-13 5 5-5 5m-5-5h10"></path></svg
+          ><span>Sign out</span>
+        </button>
+      </nav>
+      <div class="sidebar-profile">
+        <span class="avatar" data-initials="">•</span>
+        <div>
+          <strong data-user-name="">Loading…</strong
+          ><span class="subtle">Your personal space</span>
+        </div>
+      </div>
+    </aside>
+    <div class="app-frame">
+      <header class="topbar">
+        <div class="workspace-picker">
+          <span class="workspace-icon">W</span>
+          <div>
+            <label for="workspace-switcher">Workspace</label
+            ><select
+              id="workspace-switcher"
+              aria-label="Active workspace"
+              disabled=""
+            >
+              <option>Loading…</option>
+            </select>
+          </div>
+          <span class="workspace-meta" id="workspace-meta"></span>
+        </div>
+        <div class="topbar-right">
+          <label class="theme-control"
+            ><svg
+              class="icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+              ></path></svg
+            ><span class="sr-only">Theme</span
+            ><select data-theme-select="" aria-label="Theme">
+              <option value="system">System</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select></label
+          >
+        </div>
+      </header>
+      <main id="main" tabindex="-1">
+        <div id="page-error" class="error-state" role="alert" hidden="">
+          <p></p>
+          <button class="button secondary" id="page-retry" type="button">
+            Try again
+          </button>
+        </div>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow" id="page-eyebrow">YOUR MONEY, MADE CLEAR</p>
+            <h1>A space that feels like you.</h1>
+            <p class="page-subtitle">
+              Manage your profile, appearance and workspaces.
+            </p>
+          </div>
+          <div class="heading-actions"></div>
+        </div>
+        <div id="page-loading" class="loading-state" role="status">
+          <span class="spinner"></span> Loading your workspace…
+        </div>
+        <div id="page-content" hidden="">
+          <div class="settings-grid">
+            <section class="panel settings-panel">
+              <p class="eyebrow">ABOUT YOU</p>
+              <h2>Make yourself at home.</h2>
+              <form id="profile-form">
+                <label
+                  >Display name<input
+                    name="display_name"
+                    autocomplete="name"
+                    required=""
+                    maxlength="80" /></label
+                ><label
+                  >Email<input
+                    id="profile-email"
+                    type="email"
+                    readonly=""
+                    aria-describedby="email-help"
+                /></label>
+                <p id="email-help" class="field-help">
+                  Your sign-in email is managed by Supabase Auth.
+                </p>
+                <label
+                  >Appearance<select name="theme">
+                    <option value="system">Follow device settings</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                  </select></label
+                >
+                <label
+                  >Preferred report currency<select
+                    name="display_currency"
+                    id="preferred-currency"
+                  ></select
+                ></label>
+                <p class="field-help">
+                  Choose a preferred currency for reports. Apply a cached or
+                  manual rate on Overview or Transactions.
+                </p>
+                <p class="form-error" role="alert" hidden=""></p>
+                <button class="button" type="submit">Save preferences</button>
+              </form>
+            </section>
+            <section class="panel settings-panel">
+              <p class="eyebrow">A SHARED VIEW</p>
+              <h2>Create another workspace.</h2>
+              <p class="subtle">
+                Keep family finances or company expenses in their own space.
+                You’ll be the owner.
+              </p>
+              <form id="workspace-form">
+                <label
+                  >Workspace name<input
+                    name="name"
+                    required=""
+                    maxlength="60"
+                    placeholder="e.g. Our household"
+                /></label>
+                <div class="field-row">
+                  <label
+                    >Workspace type<select name="type">
+                      <option value="family">Family</option>
+                      <option value="company">Company</option>
+                    </select></label
+                  ><label
+                    >Base currency<select
+                      name="baseCurrency"
+                      id="workspace-currency"
+                    ></select
+                  ></label>
+                </div>
+                <label
+                  >Time zone<input name="timeZone" required="" maxlength="80"
+                /></label>
+                <p class="field-help">
+                  The base currency locks permanently after the first
+                  transaction, budget or nonzero opening balance.
+                </p>
+                <p class="form-error" role="alert" hidden=""></p>
+                <button class="button" type="submit">Create workspace</button>
+              </form>
+            </section>
+          </div>
+          <section class="panel settings-panel workspace-details">
+            <div>
+              <p class="eyebrow">ACTIVE WORKSPACE</p>
+              <h2 id="current-workspace-name">—</h2>
+            </div>
+            <dl id="workspace-details"></dl>
+          </section>
+          <section class="panel settings-panel" id="sharing-panel"></section>
+          <section class="panel settings-panel" id="join-workspace"></section>
+          <div class="session-actions">
+            <a class="text-link" href="forgot-password.html"
+              >Reset your password</a
+            ><button class="text-button" type="button" data-logout="">
+              Sign out
+            </button>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            >Trakkit <span class="footer-dot">·</span> Make every entry
+            count.</span
+          ><span id="scope-note">Approved transactions in your workspace</span>
+        </footer>
+      </main>
+    </div>
+    <nav class="mobile-nav" aria-label="Mobile">
+      <a href="dashboard.html" data-nav="dashboard"
+        ><svg
+          class="icon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg
+        ><span>Overview</span></a
+      ><a href="transactions.html" data-nav="transactions"
+        ><svg
+          class="icon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16m-4-4 4 4-4 4M20 17H4m4-4-4 4 4 4"></path></svg
+        ><span>Transactions</span></a
+      ><a href="accounts.html" data-nav="accounts"
+        ><svg
+          class="icon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect x="3" y="5" width="18" height="15" rx="3"></rect>
+          <path d="M3 9h18m-6 5h6"></path>
+          <circle cx="16" cy="14" r=".5"></circle></svg
+        ><span>Accounts</span></a
+      >
+      <details class="mobile-more">
+        <summary><span aria-hidden="true">☰</span><span>More</span></summary>
+        <div>
+          <a href="approvals.html" data-review-link="" hidden=""
+            >Approvals <span data-approval-badge=""></span></a
+          ><a href="settings.html" data-nav="settings"
+            ><svg
+              class="icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"
+              ></path>
+              <circle cx="12" cy="12" r="5"></circle></svg
+            ><span>Settings</span></a
+          >
+        </div>
+      </details>
+    </nav>
+    <div id="toast-region" aria-live="polite"></div>
+    <div id="modal-root"></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use Trakkit.
+      </p></noscript
+    >
+      <script src="js/ui/futuristic-motion.js" defer></script>
+  </body>
+</html>

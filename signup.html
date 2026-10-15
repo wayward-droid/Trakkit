@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Trakkit keeps your income, spending, accounts, and shared finances in clear view."
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Your fresh start. | Trakkit</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <script src="js/ui/theme-init.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/trakkit.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages/signup.css" />
+    <script src="assets/vendor/supabase.js" defer></script>
+    <script type="module" src="js/pages/signup.js"></script>
+    <script type="module" src="js/ui/auth-ambient.js"></script>
+      <link rel="stylesheet" href="css/futuristic.css" />
+</head>
+  <body class="auth-page" data-page="signup">
+    <a class="skip-link" href="#auth-form">Skip to form</a>
+    <section class="auth-story" data-ambient>
+      <canvas class="ambient-canvas" aria-hidden="true"></canvas>
+      <div class="ambient-scrim" aria-hidden="true"></div>
+      <a class="brand" href="dashboard.html"
+        ><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span
+        ><span class="brand-word">Trakkit</span></a
+      >
+      <div class="story-main">
+        <p class="eyebrow">A LITTLE MORE IN CONTROL</p>
+        <h1>
+          <span class="reveal-word" style="--word: 0">Your</span>
+          <span class="reveal-word" style="--word: 1">money.</span><br /><span
+            class="story-accent"
+            ><span class="reveal-word" style="--word: 2">In</span>
+            <span class="reveal-word" style="--word: 3">full</span>
+            <span class="reveal-word" style="--word: 4">focus.</span></span
+          >
+        </h1>
+        <p class="story-description">
+          Keep today’s entries, your yearly totals, and shared finances in one
+          clear view.
+        </p>
+        <ul class="story-features">
+          <li>
+            <span class="story-feature-icon" aria-hidden="true"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 5v14M5 12h14" /></svg
+            ></span>
+            <div>
+              <strong>Everyday clarity</strong
+              ><small>Income and expenses, organised.</small>
+            </div>
+          </li>
+          <li>
+            <span class="story-feature-icon" aria-hidden="true"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 19V9m7 10V5m7 14v-7" /></svg
+            ></span>
+            <div>
+              <strong>The full-year picture</strong
+              ><small>Yearly income. Monthly spending.</small>
+            </div>
+          </li>
+          <li>
+            <span class="story-feature-icon" aria-hidden="true"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m20 0v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75M13 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0"
+                /></svg
+            ></span>
+            <div>
+              <strong>Room to share</strong
+              ><small>Personal, family and company spaces.</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="story-bottom">
+        <p class="story-footer">
+          PERSONAL <span>•</span> FAMILY <span>•</span> COMPANY
+        </p>
+        <button class="motion-toggle" type="button" data-motion-toggle hidden>
+          Pause motion
+        </button>
+      </div>
+    </section>
+    <main class="auth-main">
+      <div class="auth-top">
+        <span>YOUR MONEY, MADE CLEAR</span
+        ><label class="theme-control"
+          ><svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+            /></svg
+          ><span class="sr-only">Theme</span
+          ><select data-theme-select>
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select></label
+        >
+      </div>
+      <div class="auth-box">
+        <p class="eyebrow">YOUR NEXT CHAPTER</p>
+        <h2>Your fresh start.</h2>
+        <p class="auth-subtitle">Make room for better money habits.</p>
+        <div class="setup-note" id="setup-note" hidden>
+          Connect your Supabase project using the included setup guide to enable
+          account access.
+        </div>
+        <form id="auth-form">
+          <label
+            >Your name<input
+              name="display_name"
+              autocomplete="name"
+              required
+              maxlength="80"
+              placeholder="How should we call you?" /></label
+          ><label
+            >Email address<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              placeholder="you@example.com"
+          /></label>
+          <div class="field-row">
+            <label
+              >Password<span class="password-field">
+                <input
+                  id="signup-password"
+                  name="password"
+                  type="password"
+                  autocomplete="new-password"
+                  minlength="8"
+                  required
+                  placeholder="At least 8 characters"
+                />
+                <button
+                  type="button"
+                  data-toggle-password="password"
+                  aria-controls="signup-password"
+                  aria-label="Show password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </span></label
+            ><label
+              >Confirm password<span class="password-field">
+                <input
+                  id="signup-confirm-password"
+                  name="confirm_password"
+                  type="password"
+                  autocomplete="new-password"
+                  minlength="8"
+                  required
+                  placeholder="One more time"
+                />
+                <button
+                  type="button"
+                  data-toggle-password="confirm_password"
+                  aria-controls="signup-confirm-password"
+                  aria-label="Show confirm password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </span></label
+            >
+          </div>
+          <label
+            >Your base currency<select
+              name="base_currency"
+              id="signup-currency"
+            ></select
+          ></label>
+          <p class="field-help">
+            Your personal workspace will use this currency for its totals.
+          </p>
+          <p class="form-error" role="alert" hidden></p>
+          <p class="form-success" role="status" hidden></p>
+          <button class="button auth-submit" type="submit">
+            Create account
+            <svg
+              class="icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14m-5-5 5 5-5 5" />
+            </svg>
+          </button>
+        </form>
+        <p class="auth-footer">
+          Already have an account? <a href="index.html">Sign in</a>
+        </p>
+      </div>
+      <div class="auth-bottom">
+        Your everyday finances, thoughtfully organised.
+      </div>
+    </main>
+    <div id="toast-region" aria-live="polite"></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use Trakkit.
+      </p></noscript
+    >
+      <script src="js/ui/futuristic-motion.js" defer></script>
+  </body>
+</html>

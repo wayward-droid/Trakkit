@@ -1,0 +1,107 @@
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.settings-panel {
+  padding: 28px;
+  margin-bottom: 24px;
+}
+.settings-panel h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+.settings-panel form {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+.workspace-details {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+.workspace-details h2 {
+  margin: 0;
+}
+.workspace-details dl {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.workspace-details dt {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+.workspace-details dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+.session-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+@media (max-width: 1050px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+  .workspace-details {
+    align-items: start;
+    flex-direction: column;
+  }
+  .workspace-details dl {
+    gap: 20px;
+  }
+}
+
+.sharing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+.sharing-grid > * {
+  min-width: 0;
+}
+.member-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.member-row > div {
+  margin-right: auto;
+}
+.member-row small,
+.invitation-row small {
+  display: block;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.member-row select {
+  width: auto;
+  max-width: 150px;
+}
+.invitation-row {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+.invitation-row input {
+  margin: 10px 0;
+  font-size: 12px;
+}
+.invitation-row button {
+  margin-right: 14px;
+}
+@media (max-width: 900px) {
+  .sharing-grid {
+    grid-template-columns: 1fr;
+  }
+}

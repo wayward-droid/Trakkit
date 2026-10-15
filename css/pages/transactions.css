@@ -1,0 +1,14 @@
+.filter-panel {
+  margin-bottom: 24px;
+}
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.transaction-note {
+  max-width: 280px;
+}
+.count-badge {
+  margin-left: 6px;
+}

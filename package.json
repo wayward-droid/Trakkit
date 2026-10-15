@@ -1,0 +1,22 @@
+{
+  "name": "trakkit-foundation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node tests/check-project.mjs",
+    "test:db": "node --test supabase/tests/*.test.mjs",
+    "build:exports": "node scripts/build-exports.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.3.14",
+    "jsdom": "26.1.0",
+    "docx": "9.10.0",
+    "esbuild": "0.28.2",
+    "jspdf": "4.2.1",
+    "jspdf-autotable": "5.0.8",
+    "pptxgenjs": "4.0.1",
+    "jszip": "3.10.1"
+  }
+}

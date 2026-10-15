@@ -1,0 +1,37 @@
+.approval-card {
+  padding: 22px 26px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.approval-card > div:first-child {
+  flex: 1;
+}
+.approval-card p.subtle {
+  font-size: 12px;
+  margin-top: 6px;
+}
+.approval-amount {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+.approval-actions {
+  display: flex;
+  gap: 8px;
+}
+.load-more-wrap {
+  text-align: center;
+  padding: 20px;
+}
+@media (max-width: 650px) {
+  .approval-card {
+    flex-wrap: wrap;
+    padding: 20px 18px;
+  }
+  .approval-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
