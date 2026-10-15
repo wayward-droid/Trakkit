@@ -198,6 +198,19 @@ export async function startPage({ load, init }) {
       if (a.dataset.nav === document.body.dataset.page)
         a.setAttribute("aria-current", "page");
     });
+    // Mobile drawer: close after navigation, Escape, or tapping outside.
+    const drawerToggle = document.querySelector("[data-sidebar-toggle]");
+    const drawerScrim = document.querySelector("[data-sidebar-scrim]");
+    const setDrawerOpen = (open) => {
+      document.body.classList.toggle("sidebar-open", open);
+      drawerToggle?.setAttribute("aria-expanded", String(open));
+      drawerToggle?.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      if (drawerScrim) drawerScrim.hidden = !open;
+    };
+    drawerToggle?.addEventListener("click", () => setDrawerOpen(!document.body.classList.contains("sidebar-open")));
+    drawerScrim?.addEventListener("click", () => setDrawerOpen(false));
+    document.querySelectorAll(".sidebar a").forEach((a) => a.addEventListener("click", () => setDrawerOpen(false)));
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") setDrawerOpen(false); });
     document.querySelectorAll("[data-logout]").forEach((b) =>
       b.addEventListener("click", async () => {
         b.disabled = true;

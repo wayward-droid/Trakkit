@@ -1,0 +1,9 @@
+.report-metrics { margin-bottom: 20px; }
+.report-period { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:20px; }
+.report-period h2, .panel h2 { margin-top:0; }
+.report-period input { width:min(220px,100%); min-height:44px; }
+.report-year-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.report-year-grid > div { display:grid; gap:8px; padding:16px; border-radius:14px; background:var(--surface-alt); min-width:0; }
+.report-year-grid strong { font-size:clamp(18px,2.8vw,25px); overflow-wrap:anywhere; }
+.insight-list { color:var(--muted); padding-left:22px; display:grid; gap:10px; }
+@media(max-width:600px){.report-period{align-items:stretch; flex-direction:column}.report-year-grid{grid-template-columns:1fr}.report-period input{width:100%}}

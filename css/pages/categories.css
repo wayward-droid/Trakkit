@@ -1,0 +1,7 @@
+#category-page-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.category-page-card { display:flex; align-items:center; gap:12px; min-width:0; padding:15px; border:1px solid var(--border); border-radius:15px; background:var(--surface); }
+.category-dot { width:12px; height:38px; flex:0 0 12px; border-radius:8px; }
+.category-page-info { display:grid; gap:4px; min-width:0; flex:1; }
+.category-page-info strong { overflow-wrap:anywhere; }
+.category-page-card .text-button { padding:8px; }
+@media(max-width:600px){#category-page-grid{grid-template-columns:1fr}}

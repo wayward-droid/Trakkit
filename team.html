@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Trakkit keeps your income, spending, accounts, and shared finances in clear view."
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Company & team | Trakkit</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <script src="js/ui/theme-init.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/trakkit.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages/team.css" />
+    <script src="assets/vendor/supabase.js" defer=""></script>
+    <script src="assets/vendor/chart.umd.min.js" defer=""></script>
+    <script type="module" src="js/pages/team.js"></script>
+      <link rel="stylesheet" href="css/futuristic.css" />
+</head>
+  <body data-page="team">
+<a class="skip-link" href="#main">Skip to content</a>
+    <div class="sidebar-scrim" data-sidebar-scrim hidden></div>
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html"
+        ><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span
+        ><span class="brand-word">Trakkit</span></a
+      >
+      <div class="nav-label">YOUR WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main">
+        <a href="dashboard.html" title="Overview" data-nav="dashboard"
+          ><svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg
+          ><span>Overview</span></a
+        ><a href="transactions.html" title="Transactions" data-nav="transactions"
+          ><svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 7h16m-4-4 4 4-4 4M20 17H4m4-4-4 4 4 4"></path></svg
+          ><span>Transactions</span></a
+        ><a href="accounts.html" title="Accounts" data-nav="accounts"
+          ><svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="15" rx="3"></rect>
+            <path d="M3 9h18m-6 5h6"></path>
+            <circle cx="16" cy="14" r=".5"></circle></svg
+          ><span>Accounts</span></a
+        >
+        <a href="reports.html" title="Reports" data-nav="reports">
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-5 5"></path></svg><span>Reports</span>
+        </a>
+        <a href="categories.html" title="Categories" data-nav="categories">
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 11 3.8A2 2 0 0 0 9.6 3H4a1 1 0 0 0-1 1v5.6a2 2 0 0 0 .6 1.4l9.6 9.6a2 2 0 0 0 2.8 0l4.6-4.4a2 2 0 0 0 0-2.8Z"></path><circle cx="7.5" cy="7.5" r=".8"></circle></svg><span>Categories</span>
+        </a>
+        <a href="team.html" title="Company &amp; team" data-nav="team">
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span>Company &amp; team</span>
+        </a>
+<a
+          href="approvals.html"
+          title="Approvals" data-nav="approvals"
+          data-review-link=""
+          hidden=""
+          ><span aria-hidden="true">✓</span><span>Approvals</span
+          ><span class="count-badge" data-approval-badge=""></span
+        ></a>
+      </nav>
+      <div class="sidebar-note">
+        <span class="note-spark">✳</span
+        ><strong>Small habits.<br />Clearer finances.</strong>
+        <p>A little clarity, every day.</p>
+      </div>
+      <nav class="side-nav side-bottom" aria-label="Account">
+        <a href="settings.html" title="Settings" data-nav="settings"
+          ><svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"
+            ></path>
+            <circle cx="12" cy="12" r="5"></circle></svg
+          ><span>Settings</span></a
+        ><button type="button" title="Log out" data-logout="">
+          <svg
+            class="icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M10 4H5v16h5m4-13 5 5-5 5m-5-5h10"></path></svg
+          ><span>Sign out</span>
+        </button>
+      </nav>
+      <div class="sidebar-profile">
+        <span class="avatar" data-initials="">•</span>
+        <div>
+          <strong data-user-name="">Loading…</strong
+          ><span class="subtle">Your personal space</span>
+        </div>
+      </div>
+    </aside>
+    <div class="app-frame">
+      <header class="topbar">
+        <button class="icon-button mobile-menu-toggle" type="button" data-sidebar-toggle aria-label="Open navigation" aria-expanded="false"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+        <button class="mobile-logout" type="button" data-logout aria-label="Log out"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H5v16h5m4-13 5 5-5 5m-5-5h10"></path></svg><span>Log out</span></button>
+        <div class="workspace-picker">
+          <span class="workspace-icon">W</span>
+          <div>
+            <label for="workspace-switcher">Workspace</label
+            ><select
+              id="workspace-switcher"
+              aria-label="Active workspace"
+              disabled=""
+            >
+              <option>Loading…</option>
+            </select>
+          </div>
+          <span class="workspace-meta" id="workspace-meta"></span>
+        </div>
+        <div class="topbar-right">
+          <label class="theme-control"
+            ><svg
+              class="icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+              ></path></svg
+            ><span class="sr-only">Theme</span
+            ><select data-theme-select="" aria-label="Theme">
+              <option value="system">System</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select></label
+          >
+        </div>
+      </header>
+      <main id="main" tabindex="-1">
+        <div id="page-error" class="error-state" role="alert" hidden><p></p><button class="button secondary" id="page-retry" type="button">Try again</button></div>
+        <div class="page-heading"><div><p class="eyebrow">MONEY, TOGETHER</p><h1>Company & team</h1><p class="page-subtitle">Manage who shares this workspace and understand their access.</p></div><div class="heading-actions"><button class="button" type="button" data-add-transaction>+ Add transaction</button></div></div>
+        <div id="page-loading" class="loading-state" role="status"><span class="spinner"></span> Loading your workspace…</div>
+        <div id="page-content" hidden>
+          <section class="metrics"><article class="metric"><span class="metric-label">Workspace</span><strong class="metric-value" id="team-workspace-name">—</strong><span class="subtle" id="team-workspace-type">Current workspace</span></article><article class="metric"><span class="metric-label">Your access</span><strong class="metric-value" id="team-your-role">—</strong><span class="subtle">Based on your workspace role</span></article><article class="metric"><span class="metric-label">Members</span><strong class="metric-value" id="team-member-count">—</strong><span class="subtle">People with workspace access</span></article></section>
+          <section class="panel"><div class="panel-heading"><div><h2>Workspace members</h2><p class="subtle">Member details are loaded from your active workspace.</p></div><a class="button secondary" href="settings.html#sharing-panel">Manage invitations</a></div><div class="team-list" id="team-members"></div></section>
+          <section class="panel"><h2>Sharing safely</h2><p class="subtle">Only invite people who should access this workspace. Member roles control which actions they can perform. Trakkit uses workspace permissions and database policies to protect financial records.</p></section>
+</div>
+      </main>
+    </div>
+  </body>
+</html>

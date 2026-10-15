@@ -1,0 +1,7 @@
+.team-list { display:grid; gap:10px; }
+.team-member { display:flex; align-items:center; gap:13px; padding:14px; border:1px solid var(--border); border-radius:15px; min-width:0; }
+.team-member .avatar { display:grid; place-items:center; flex:0 0 42px; width:42px; height:42px; border-radius:50%; background:var(--tint); color:var(--accent); font-weight:750; }
+.team-member-details { display:grid; gap:4px; flex:1; min-width:0; }
+.team-member-details strong { overflow-wrap:anywhere; }
+.team-role { border:1px solid var(--border); border-radius:999px; padding:5px 10px; font-size:12px; white-space:nowrap; color:var(--accent); }
+@media(max-width:420px){.team-member{align-items:flex-start;flex-wrap:wrap}.team-role{margin-left:55px}}
