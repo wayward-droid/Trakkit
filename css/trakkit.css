@@ -19,50 +19,7 @@
   --chart-expense: #b9a1ff;
   --ambient-tint: #5d3b9b44;
 }
-/* Icon-first rail. Hover/focus expands over the workspace without reflow. */
-@media (min-width: 761px) {
-  body:not(.auth-page) .sidebar {
-    width: 78px;
-    padding: 28px 12px 20px;
-    overflow-x: hidden;
-    transition: width .24s cubic-bezier(.2,.75,.25,1), box-shadow .24s ease, padding .24s ease;
-  }
-  body:not(.auth-page) .sidebar:hover,
-  body:not(.auth-page) .sidebar:focus-within {
-    width: 252px;
-    padding: 28px 20px 20px;
-    box-shadow: 18px 0 55px #15102b20;
-  }
-  body:not(.auth-page) .app-frame { margin-left: 78px; }
-  body:not(.auth-page) .sidebar > .brand { justify-content: center; white-space: nowrap; min-height: 28px; }
-  body:not(.auth-page) .sidebar .brand-word { opacity: 0; width: 0; overflow: hidden; transition: opacity .16s ease; }
-  body:not(.auth-page) .sidebar:hover .brand-word,
-  body:not(.auth-page) .sidebar:focus-within .brand-word { opacity: 1; width: auto; }
-  body:not(.auth-page) .sidebar .nav-label { margin: 42px 0 12px; font-size: 0; height: 1px; overflow: hidden; }
-  body:not(.auth-page) .sidebar:hover .nav-label,
-  body:not(.auth-page) .sidebar:focus-within .nav-label { font-size: 9px; margin: 42px 10px 12px; height: auto; }
-  body:not(.auth-page) .sidebar .side-nav a,
-  body:not(.auth-page) .sidebar .side-nav button { justify-content: center; gap: 13px; padding: 13px 10px; white-space: nowrap; }
-  body:not(.auth-page) .sidebar:hover .side-nav a,
-  body:not(.auth-page) .sidebar:hover .side-nav button,
-  body:not(.auth-page) .sidebar:focus-within .side-nav a,
-  body:not(.auth-page) .sidebar:focus-within .side-nav button { justify-content: flex-start; padding-inline: 14px; }
-  body:not(.auth-page) .sidebar .side-nav a > span:not(.count-badge),
-  body:not(.auth-page) .sidebar .side-nav button > span:not(.count-badge) { display: none; }
-  body:not(.auth-page) .sidebar:hover .side-nav a > span,
-  body:not(.auth-page) .sidebar:hover .side-nav button > span,
-  body:not(.auth-page) .sidebar:focus-within .side-nav a > span,
-  body:not(.auth-page) .sidebar:focus-within .side-nav button > span { display: inline; }
-  body:not(.auth-page) .sidebar .side-nav a .count-badge { display: none; }
-  body:not(.auth-page) .sidebar:hover .side-nav a .count-badge,
-  body:not(.auth-page) .sidebar:focus-within .side-nav a .count-badge { display: inline-flex; }
-  body:not(.auth-page) .sidebar .sidebar-note,
-  body:not(.auth-page) .sidebar .sidebar-profile { opacity: 0; visibility: hidden; height: 0; overflow: hidden; padding-block: 0; margin: 0; }
-  body:not(.auth-page) .sidebar:hover .sidebar-note,
-  body:not(.auth-page) .sidebar:hover .sidebar-profile,
-  body:not(.auth-page) .sidebar:focus-within .sidebar-note,
-  body:not(.auth-page) .sidebar:focus-within .sidebar-profile { opacity: 1; visibility: visible; height: auto; overflow: visible; padding-block: 18px; transition: opacity .2s ease; }
-}
+/* The signed-in sidebar is styled in futuristic.css: labels always visible. */
 /* Native select menus and workspace switcher always follow the active theme. */
 select, option, .workspace-picker select, .theme-control select {
   color: var(--text);
