@@ -326,7 +326,7 @@ input:focus, select:focus, textarea:focus { border-color:var(--accent) !importan
   body:not(.auth-page) .sidebar .side-nav a, body:not(.auth-page) .sidebar .side-nav button { justify-content:flex-start; padding-inline:13px; }
   body:not(.auth-page) .sidebar .side-nav a > span, body:not(.auth-page) .sidebar .side-nav button > span { display:inline; }
   body:not(.auth-page) .sidebar .sidebar-note, body:not(.auth-page) .sidebar .sidebar-profile { opacity:1; visibility:visible; height:auto; padding-block:14px; }
-  main#main { padding:24px 16px 42px; }
+  main#main { padding:24px 16px calc(92px + env(safe-area-inset-bottom)); }
   .topbar { min-height:70px; padding:12px 16px; }
   .page-heading { align-items:flex-start; flex-direction:column; }
   .page-heading h1 { font-size:36px; }
@@ -340,10 +340,11 @@ input:focus, select:focus, textarea:focus { border-color:var(--accent) !importan
 }
 
 
-/* Mobile navigation: visible menu trigger, dismissible drawer, and always-visible logout. */
+/* Mobile shell: one bottom navigation with a single "More" toggle. The old
+   header menu trigger and logout button are gone; the header shows the brand. */
 .sidebar-scrim { display:none; }
-.mobile-menu-toggle, .mobile-logout { display:none; }
-.mobile-logout { align-items:center; justify-content:center; gap:7px; min-height:42px; padding:0 12px; border:1px solid color-mix(in srgb,var(--accent) 25%,var(--border)); border-radius:12px; background:color-mix(in srgb,var(--accent) 9%,var(--surface)); color:var(--text); font:inherit; font-size:13px; font-weight:650; cursor:pointer; }
+.mobile-menu-toggle, .mobile-logout { display:none !important; }
+.topbar-brand { display:none; }
 @media (max-width:760px) {
   body:not(.auth-page) .sidebar { position:fixed; inset:0 auto 0 0; z-index:1002; height:100dvh; overflow-y:auto; transform:translateX(-105%); visibility:hidden; width:min(310px,88vw); padding:20px 17px max(22px,env(safe-area-inset-bottom)); transition:transform .24s ease,visibility .24s ease; }
   body:not(.auth-page).sidebar-open .sidebar { transform:translateX(0); visibility:visible; box-shadow:24px 0 70px #08081755; }
@@ -357,21 +358,35 @@ input:focus, select:focus, textarea:focus { border-color:var(--accent) !importan
   .sidebar-scrim { display:block; position:fixed; inset:0; z-index:1001; background:#08081788; backdrop-filter:blur(3px); opacity:0; pointer-events:none; transition:opacity .2s ease; }
   body:not(.auth-page).sidebar-open .sidebar-scrim { opacity:1; pointer-events:auto; }
   .topbar { display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:68px; padding:10px 14px; }
-  .mobile-menu-toggle, .mobile-logout { display:inline-flex; flex-shrink:0; }
-  .mobile-menu-toggle { order:-1; }
+  .topbar-brand { display:inline-flex; align-items:center; gap:9px; flex-shrink:0; text-decoration:none; }
+  .topbar-brand .brand-word { font-weight:800; letter-spacing:-.03em; color:var(--text); }
+  .topbar-brand .brand-mark { flex-shrink:0; }
   .topbar .workspace-picker { flex:1; min-width:0; }
   .workspace-picker label, .workspace-meta { display:none; }
   .workspace-picker select { max-width:100%; }
   .topbar-right { margin-left:auto; }
   .theme-control { padding:5px 6px; }
   .theme-control select { max-width:82px; }
-  main#main { padding:22px 14px calc(38px + env(safe-area-inset-bottom)); min-width:0; }
+  main#main { padding:22px 14px calc(92px + env(safe-area-inset-bottom)); min-width:0; }
   .page-heading h1 { font-size:clamp(28px,8vw,36px); }
   .metrics, .chart-grid, .account-grid, .categories-grid { grid-template-columns:1fr; }
   .table-wrap, .transaction-list, .panel { max-width:100%; }
   .sidebar .side-bottom { margin-top:18px; }
 }
-@media (max-width:390px) { .mobile-logout { padding:0 9px; font-size:12px; } .mobile-logout .icon { width:16px; } .topbar-right .theme-control select { max-width:68px; } }
+@media (max-width:390px) { .topbar-brand .brand-word { display:none; } .topbar-right .theme-control select { max-width:68px; } }
+
+/* Bottom bar details panel: scrollable when many destinations, styled sign-out. */
+@media (max-width:767px) {
+  .topbar-brand { display:inline-flex; align-items:center; gap:9px; flex-shrink:0; text-decoration:none; }
+  .topbar-brand .brand-word { font-weight:800; letter-spacing:-.03em; color:var(--text); }
+  .topbar-brand .brand-mark { flex-shrink:0; }
+  .mobile-nav .mobile-more > div { max-height:min(70vh,470px); overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; }
+  .mobile-nav .mobile-more > div a { padding:11px 12px; }
+  .mobile-nav .mobile-more > div button { display:flex; width:100%; align-items:center; gap:12px; padding:11px 12px; font:inherit; font-size:12px; font-weight:600; color:var(--text); background:none; border:0; border-radius:10px; cursor:pointer; text-align:left; white-space:nowrap; }
+  .mobile-nav .mobile-more > div button:hover { background:var(--tint); }
+  .mobile-nav .mobile-more > div button .icon { flex-shrink:0; }
+  .mobile-nav .mobile-more > div button { margin-top:6px; border-top:1px solid var(--border); padding-top:12px; }
+}
 
 .sidebar-scrim[hidden] { display:none !important; }
 

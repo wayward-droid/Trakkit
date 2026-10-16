@@ -17,6 +17,10 @@ The latest visual refinement updates the existing pages and adds `js/ui/auth-amb
 
 The Budgets, Savings goals, and Recurring bills pages use three workspace-scoped Supabase tables. For an existing Supabase project, run `supabase/migrations/005_planning_features.sql` after migrations 001–004 in the Supabase SQL Editor. The migration creates row-level security policies for workspace members. Then refresh the site and use the new pages from the sidebar.
 
+### Repair the planning tables and online rates (v11, migration 008)
+
+If the Budgets page shows `column budgets.name does not exist`, an older `budgets` table from migration 001 is still in place. Run `supabase/migrations/008_fix_planning_and_rate_cache.sql` in the Supabase SQL Editor. It replaces only the incompatible table, keeps all other planning data, and is safe to re-run. The same migration adds the `cache_exchange_rates` RPC so online currency conversion works even when the `refresh-exchange-rates` Edge Function is not deployed.
+
 
 ### More income categories (v7)
 

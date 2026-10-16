@@ -53,10 +53,10 @@ export function launchPlanningPage(config) {
       toast(config.savedMessage || "Saved successfully.");
       await app.refresh();
     } catch (error) {
-      const missingPlanningTable = ["PGRST205", "42P01"].includes(error?.code) ||
-        /could not find the table .*budgets|could not find the table .*savings_goals|could not find the table .*recurring_bills|relation .* does not exist/i.test(error?.message || "");
+      const missingPlanningTable = ["PGRST205", "42P01", "42703"].includes(error?.code) ||
+        /could not find the table .*budgets|could not find the table .*savings_goals|could not find the table .*recurring_bills|relation .* does not exist|column .*\.name does not exist/i.test(error?.message || "");
       toast(missingPlanningTable
-        ? "Planning tables missing. Run supabase/migrations/005_planning_features.sql in Supabase SQL Editor, then reload."
+        ? "The planning tables need repair. Run supabase/migrations/008_fix_planning_and_rate_cache.sql in your Supabase SQL Editor, then reload."
         : error.message || "Could not save this item.", true);
     } finally {
       busy(submit, false);

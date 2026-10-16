@@ -25,7 +25,13 @@ export async function yearlySummary(workspaceId, year) {
   return data;
 }
 export async function reportExchangeRate(workspaceId, currency) {
-  await refreshExchangeRates();
+  // Refresh is best effort: if the online provider is unreachable we still try
+  // the cached rate so reports keep working offline.
+  try {
+    await refreshExchangeRates();
+  } catch {
+    /* fall through to the cached rate lookup */
+  }
   const db = await getClient();
   const { data, error } = await db.rpc("report_exchange_rate", {
     p_workspace: workspaceId,

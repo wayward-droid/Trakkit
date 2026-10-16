@@ -33,6 +33,8 @@ The first migration creates the eleven application tables and the sign-up trigge
 
 After migrations 001–004, also run `supabase/migrations/005_planning_features.sql` to enable **Budgets, Savings Goals, and Recurring Bills**. If the rest of Trakkit works but these planning pages show a missing-table error, migration 005 is the likely missing step. For an existing project that already has 001–004 applied, run only migration 005 for these three pages.
 
+Finally run `supabase/migrations/008_fix_planning_and_rate_cache.sql`. It repairs the Budgets table on databases where an earlier `budgets` table already existed (the source of the "column budgets.name does not exist" error) and installs the `cache_exchange_rates` RPC used for online currency conversion. It is safe to run on both new and existing projects, and safe to re-run.
+
 Sign up through the app after these migrations have run. Users created before the migration will not automatically get the profile/workspace records from the new-user trigger. Use a fresh test user for the first check.
 
 ## 3 Add your public connection settings
@@ -113,7 +115,8 @@ Use **Download yearly report** on Overview for January–December of the selecte
 | Blank page on double-clicking HTML                  | Serve through Live Server or Apache using HTTP                  |
 | `account_details` or `update_transaction` not found | Apply the second migration                                      |
 | Reset/confirmation link goes to the wrong place     | Check the exact redirect host, port, path and Site URL          |
-| “No usable rate for this date”                      | Confirm the online-rate Edge Function is deployed and the `007_online_exchange_rates.sql` migration has been applied; the provider may not publish rates for every date. |
+| “No usable rate for this date”                      | Apply `008_fix_planning_and_rate_cache.sql` so the `cache_exchange_rates` RPC exists; the provider may not publish rates for every date. |
+| “column budgets.name does not exist”                | Apply `008_fix_planning_and_rate_cache.sql` to repair the Budgets table |
 | Company totals exclude an expense                   | Check its status and review submitted expenses in Approvals     |
 | “This transaction changed”                          | Reload it before editing or reviewing again                     |
 
@@ -123,9 +126,9 @@ Trakkit now fetches daily reference rates from [Frankfurter](https://frankfurter
 
 For an existing Supabase project:
 
-1. Run `supabase/migrations/007_online_exchange_rates.sql` in the Supabase SQL Editor.
-2. From the project root, make sure the Supabase CLI is linked to your project, then deploy the function: `supabase functions deploy refresh-exchange-rates`.
-3. Confirm the Edge Function has the standard `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` secrets configured. Supabase normally supplies these automatically; never put the service-role key in frontend files.
+1. Run `supabase/migrations/008_fix_planning_and_rate_cache.sql` in the Supabase SQL Editor. It adds the `cache_exchange_rates` RPC that lets the browser store fetched rates securely.
+2. (Optional) From the project root, make sure the Supabase CLI is linked to your project, then deploy the server-side fetcher: `supabase functions deploy refresh-exchange-rates` (run `007_online_exchange_rates.sql` first so the function can write to the cache). This is no longer required: if the function is not deployed, Trakkit fetches the rates directly in the browser and caches them through the RPC from step 1.
+3. Confirm the Edge Function (if deployed) has the standard `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` secrets configured. Supabase normally supplies these automatically; never put the service-role key in frontend files.
 4. Test by opening Add Transaction, choosing a different account currency, and checking that the preview shows an online rate and date. Then apply a different Report currency.
 
 The rate provider may return the most recent available business-day rate for weekends, holidays, or dates with no publication. If the provider is unreachable or does not offer a requested quote, Trakkit displays an error instead of asking the user to guess an exchange rate.

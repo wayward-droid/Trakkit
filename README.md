@@ -67,7 +67,7 @@ The downloadable ZIP places the HTML, CSS, JS and assets at the project root, ma
 - **Yearly total income** covers 1 January–31 December of the selected dashboard year. Expenses and net change are explicitly monthly. Opening balances are not income.
 - Choose a currency directly in the entry form; managers can create an account in that currency without leaving it. Foreign-currency transaction and report rates are fetched online automatically; users do not need to type exchange rates. Stored transaction amounts and saved rates remain unchanged. Set a preferred report currency in Settings.
 - Download the complete selected year from Overview, or all matching rows from Transactions, as PDF, Word or PowerPoint. Original amounts and report amounts are included; totals count approved records only. Conversion rounds each exported row before summing, so the converted report total can differ by a few minor units from the dashboard's converted aggregate.
-- Apply migrations **003–005** in order to enable the latest changes in an existing Supabase installation. See [UPGRADE.md](UPGRADE.md).
+- Apply migrations **003–005 and 008** in order to enable the latest changes in an existing Supabase installation. Migration 008 repairs the Budgets table and enables online currency conversion without a deployed Edge Function. See [UPGRADE.md](UPGRADE.md).
 
 ## Verification
 
